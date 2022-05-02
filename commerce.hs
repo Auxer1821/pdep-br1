@@ -2,7 +2,7 @@ type Produco = (String,Float)
 nombreDelProducto :: Produco -> String
 nombreDelProducto producto = fst producto
 
-
+--Quise poner (Num a,b,c,d) pero no me funcionaba 
 precioTotal::(Num a)=>a->a->a->a->a
 precioTotal precioUnitario cantidadProducto descuento costoDeEnvio = aplicarDescuento precioUnitario descuento * cantidadProducto + aplicarCostoDeEnvio precioUnitario costoDeEnvio 
 
@@ -46,4 +46,5 @@ productoXL:: Produco -> Produco
 productoXL (nombreProducto,costoProducto) = (nombreProducto++"XL",costoProducto)
 
 versionBarata:: String -> String
-versionBarata nombreProducto = reverse.descodiciarProducto$nombreProducto
+versionBarata nombreProducto = reverse.descodiciarProducto$nombreProducto 
+
