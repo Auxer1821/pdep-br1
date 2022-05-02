@@ -1,15 +1,15 @@
 type NombreDleProducto = String
 type PrecioDleProducto = Float
 
-type Produco = (NombreDleProducto,PrecioDleProducto)
-nombreDelProducto :: Produco -> String
+type Producto = (NombreDleProducto,PrecioDleProducto)
+nombreDelProducto :: Producto -> String
 nombreDelProducto producto = fst producto
 
 --Quise poner (Num a,b,c,d) pero no me funcionaba 
 precioTotal::(Num a)=>a->a->a->a->a
 precioTotal precioUnitario cantidadProducto descuento costoDeEnvio = aplicarDescuento precioUnitario descuento * cantidadProducto + aplicarCostoDeEnvio precioUnitario costoDeEnvio 
 
-productoDeElite:: Produco -> Bool
+productoDeElite:: Producto -> Bool
 productoDeElite unProducto = (productoDeLujo.nombreDelProducto) unProducto && (productoCodiciado.nombreDelProducto) unProducto && (not.productoCorriente.nombreDelProducto) unProducto
 
 aplicarDescuento:: (Num a)=> a->a->a
@@ -19,7 +19,7 @@ type DiaEntrega = String
 type PreciEntrega = Float
 
 type Entrega = (DiaEntrega,[CantidaXPructo],PreciEntrega)
-type CantidaXPructo = (Int,Produco)
+type CantidaXPructo = (Int,Producto)
 diaDeEntega :: Entrega -> String
 diaDeEntega (dia,_,_) = dia
 
@@ -48,7 +48,7 @@ productoCorriente nombreProducto = esVocal.head$nombreProducto
 esVocal :: Char -> Bool
 esVocal caracter = elem caracter "aeiouAEIOU"
 
-productoXL:: Produco -> Produco
+productoXL:: Producto -> Producto
 productoXL (nombreProducto,costoProducto) = (nombreProducto++"XL",costoProducto)
 
 versionBarata:: NombreDleProducto -> NombreDleProducto
