@@ -1,4 +1,7 @@
-type Produco = (String,Float)
+type NombreDleProducto = String
+type PrecioDleProducto = Float
+
+type Produco = (NombreDleProducto,PrecioDleProducto)
 nombreDelProducto :: Produco -> String
 nombreDelProducto producto = fst producto
 
@@ -12,7 +15,10 @@ productoDeElite unProducto = (productoDeLujo.nombreDelProducto) unProducto && (p
 aplicarDescuento:: (Num a)=> a->a->a
 aplicarDescuento precioProducto descuento = precioProducto - descuento
 
-type Entrega = (String,[CantidaXPructo],Float)
+type DiaEntrega = String
+type PreciEntrega = Float
+
+type Entrega = (DiaEntrega,[CantidaXPructo],PreciEntrega)
 type CantidaXPructo = (Int,Produco)
 diaDeEntega :: Entrega -> String
 diaDeEntega (dia,_,_) = dia
@@ -21,22 +27,22 @@ diaDeEntega (dia,_,_) = dia
 entregaSencilla:: Entrega -> Bool 
 entregaSencilla entrega = diaSencillos.diaDeEntega$entrega
 
-diaSencillos:: String -> Bool
+diaSencillos:: DiaEntrega -> Bool
 diaSencillos dia = even.length$dia
 
-descodiciarProducto:: String->String
+descodiciarProducto:: NombreDleProducto->NombreDleProducto
 descodiciarProducto nombreProducto = take 10 nombreProducto
 
-productoDeLujo:: String->Bool
+productoDeLujo:: NombreDleProducto->Bool
 productoDeLujo nombreProducto = elem 'x' nombreProducto || elem 'z' nombreProducto
 
 aplicarCostoDeEnvio:: (Num a)=> a->a->a
 aplicarCostoDeEnvio precioProducto envio = precioProducto + envio 
 
-productoCodiciado:: String->Bool
+productoCodiciado:: NombreDleProducto->Bool
 productoCodiciado nombreProducto =(>10).length$nombreProducto
 
-productoCorriente:: String->Bool
+productoCorriente:: NombreDleProducto->Bool
 productoCorriente nombreProducto = esVocal.head$nombreProducto
 
 esVocal :: Char -> Bool
@@ -45,6 +51,6 @@ esVocal caracter = elem caracter "aeiouAEIOU"
 productoXL:: Produco -> Produco
 productoXL (nombreProducto,costoProducto) = (nombreProducto++"XL",costoProducto)
 
-versionBarata:: String -> String
+versionBarata:: NombreDleProducto -> NombreDleProducto
 versionBarata nombreProducto = reverse.descodiciarProducto$nombreProducto 
 
